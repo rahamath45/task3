@@ -25,30 +25,30 @@ function startgame(){
         card.dataset.symbol = symbol;
         card.innerHTML=`
         <div class="card-inner">
-         <div class="card-front">${symbol}</div>
-         <div class="card-back">?</div>
+        <div class="card-front">${symbol}</div>
+        <div class="card-back">?</div>
         </div>
-`;
- card.addEventListener("click",() => flipcard(card));
- board.append(card);
+        `;
+         card.addEventListener("click", () => flipcard(card));
+         board.append(card);
     });
 }
 
 function flipcard(card){
-    if(flippedcards.length>=2 || card.classlist.contains('flipped')) return;
+    if(flippedcards.length >=2 || card.classList.contains('flipped')) return;
 
     card.classList.add('flipped');
     flippedcards.push(card);
-    if(flippedcards.length===2){
+    if(flippedcards.length==2){
         checkmatch();
     }
 }
 function checkmatch(){
     const [card1,card2] = flippedcards;
-    if(card1.dataset.symbol === card2.dataset.symbol){
+    if(card1.dataset.symbol == card2.dataset.symbol){
         flippedcards =[];
         matchedcount++;
-        if(matchedcount === symbols.length){
+        if(matchedcount == symbols.length){
             setTimeout(()=> alert(`you win the game`) 
             ,2000)
         }
@@ -57,7 +57,7 @@ function checkmatch(){
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
             flippedcards=[];
-        },8000);
+        },1000);
     }
 }
    
